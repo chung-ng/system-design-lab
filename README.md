@@ -18,7 +18,7 @@ system-design-lab/
 ├── README.md                               # Master Index & Architecture Guidelines
 │
 ├── classical/                              # 15 Classical Distributed Systems Implementations
-│   ├── 01-rate-limiter/                    # Token Bucket & Redis Sliding Window (Atomic Lua)
+│   ├── 01-rate-limiter/                    # Token Bucket & GCRA (Atomic Lua & In-Memory Fallback)
 │   ├── 02-idempotent-payments-api/         # Distributed Locking, State Machine & Outbox Pattern
 │   ├── 03-distributed-cache/               # Cache-Aside, SingleFlight, LRU & Stampede Prevention
 │   ├── 04-notification-system/             # WebSocket/SSE Hub, Worker Pool & Backpressure
@@ -51,7 +51,7 @@ system-design-lab/
 
 ### 🏆 Tier 1: Core Architectural Anchors
 The non-negotiables for high-throughput backend roles:
-1. **[`classical/01-rate-limiter`](classical/01-rate-limiter/)**: Token Bucket & Sliding Window. Atomic Lua execution in Redis, fail-open vs. fail-closed trade-offs under network partitions.
+1. **[`classical/01-rate-limiter`](classical/01-rate-limiter/)**: Token Bucket & GCRA. Atomic Lua execution in Redis, fail-open vs. fail-closed trade-offs under network partitions.
 2. **[`classical/02-idempotent-payments-api`](classical/02-idempotent-payments-api/)**: Zero double-charging guarantee. Idempotency keys, state machines, distributed locking, and the Transactional Outbox pattern.
 3. **[`classical/03-distributed-cache`](classical/03-distributed-cache/)**: Eradication of Cache Stampede (Thundering Herd) under 10k concurrent cache misses via Go's `singleflight.Group`.
 4. **[`ai-production/01-llm-serving-gateway`](ai-production/01-llm-serving-gateway/)**: High-throughput AI proxy in Go. SSE chunk streaming without buffering, multi-provider failover, and Time-to-First-Token (TTFT) optimization.
